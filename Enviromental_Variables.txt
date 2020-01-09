@@ -1,0 +1,3 @@
+set FORGE_CLIENT_ID=aouApR0VzbxzeH7qnivlSNbcxAg7roUA
+set FORGE_CLIENT_SECRET=VbZyVRpvhPBlKqsj
+set FORGE_CALLBACK_URL=http://localhost:3000/api/forge/callback/oauth
