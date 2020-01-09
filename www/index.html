@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TBG Visual Reports</title>
+  <!-- Common packages: JQuery & Bootstrap -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/jstree/style.css"/>
+  <link rel="stylesheet" href="/css/nv.d3.css">
+  <!--<link rel="shortcut icon" href=/img/favicon.ico type=image/x-icon> -->
+  <link rel="shortcut icon" href=/img/TBG.ico type=image/x-icon>
+  <link rel="stylesheet" href="/css/main.css"/>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jstree.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+  <script src="/js/clipboard.min.js"></script>
+
+  <!-- Notification ballons -->
+  <script src="js/libraries/notify.min.js"></script>
+  
+  <!-- Autodesk Forge Viewer files -->
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/style.min.css?v=v6.*" type="text/css" />
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/viewer3D.min.js?v=v6.*"></script>
+
+  <!--
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+  -->
+
+  <script src="/js/libraries/d3.min.js"></script>
+  <script src="/js/libraries/d3pie.min.js"></script>
+  <script src="/js/libraries/nv.d3.min.js"></script>
+
+  <!-- BIM360 packages: login and authentication -->
+  <script src="/js/oauth.js"></script>
+  <script src="/js/forge.data.management.js"></script>
+
+  <!-- Script para llenar el arbol de WBS desde MySQL -->
+  <script src="/js/swfs.management.js"></script>
+
+  <script src="/js/forge.viewer.js"></script> 
+  <script src="/js/reportData.js"></script>
+  <script src="/js/barchart.js"></script>
+  <script src="/js/piechart.js"></script>
+
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav left">
+        <li>
+          <a href="https://tbg.mx" target="_blank">
+            <img alt="TBG logo" src="/img/TBG_Transparente.png" height="30" />
+              The BIM Group
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#" id="signInButton"><span class="glyphicon glyphicon-user" id="signInProfileImage"></span>
+            <span id="signInButtonText" title="Sign in with your Autodesk Account">Sign in</span></a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- End of navbar -->
+
+  <div class="container-fluid">
+
+    <div class="row data-container">
+      <div class="col-sm-3 col-md-2 sidebar " id="dataManagementHubs">
+        <div style="padding-top: 30px; text-align: center;">
+          <Button class="btn btn-lg btn-default button-ipad" onclick="forgeSignIn()"><img src="img/autodesk_text.png" height="20px"/> Sign in</Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row swfs-data-container">
+      <div class="col-sm-3 col-md-2 sidebar " id="dataswfswbs">
+
+      </div>
+    </div>
+
+    <div class="row" >
+      <div id="forgeViewer" > 
+      </div> 
+    </div>
+
+    <div class="row" >
+      <div id="dropdown2dviews">
+        2D Viewer  <select id="list2dviews"></select>
+      </div>
+      <div id="viewerSecondary" ></div> 
+    </div>
+
+    <div class="row" >
+      <div id="positionCharts"> 
+        <div class="tab-panel active report-dropdowns" id="tab_panel_1">
+          <label for="pu_reportToRun" class="report-dropdowns">Report</label>
+            <select id="pu_reportToRun" class="select-light" name="reportToRun" disabled>
+            
+              <!-- Options filled in by function in Report_PieChart.js -->
+            
+            </select>
+          <label for="pu_sortOrder" class="sort-dropdowns">Sort Order</label>
+          <select id="pu_sortOrder" class="select-light" name="sortOrder" disabled>
+              <option value="value-asc">Value - Ascending</option>
+              <option value="value-desc" selected="selected">Value - Descending</option>
+              <option value="label-asc">Label - Ascending</option>
+              <option value="label-desc">Label - Descending</option>
+              <option value="random">Random</option>
+          </select>
+        </div>
+        <div class="svgcanvas">
+          <div id="pieChart"></div>
+          <div id="barChart"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
